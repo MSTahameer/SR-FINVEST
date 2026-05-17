@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SR Finvest | Premium Trading Assistance Platform</title>
+<meta name="description" content="SR Finvest - Elite trading signals, market education, portfolio tracking and community access. India's premium trading assistance platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080a0c;
+  --deep: #0d1117;
+  --surface: #111820;
+  --card: #141c26;
+  --border: rgba(255,255,255,0.07);
+  --border-bright: rgba(255,255,255,0.13);
+  --emerald: #00d97e;
+  --emerald-dim: #00b368;
+  --emerald-glow: rgba(0,217,126,0.12);
+  --emerald-glow-strong: rgba(0,217,126,0.22);
+  --gold: #f0c040;
+  --gold-dim: #c9a030;
+  --text-primary: #f0f4f8;
+  --text-secondary: #8899aa;
+  --text-muted: #4a5568;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+img { display: block; max-width: 100%; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--deep); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 70px;
+  background: rgba(8,10,12,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+nav.scrolled { background: rgba(8,10,12,0.98); }
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.logo-mark {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dim) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; font-weight: 800; color: var(--black);
+}
+.logo-sr { color: var(--emerald); }
+.logo-finvest { color: var(--text-primary); }
+.nav-links {
+  display: flex; align-items: center; gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.88rem; font-weight: 500; color: var(--text-secondary);
+  transition: color 0.2s; letter-spacing: 0.02em;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+.nav-cta {
+  background: var(--emerald); color: var(--black);
+  padding: 9px 20px; border-radius: 8px;
+  font-size: 0.88rem; font-weight: 700;
+  transition: all 0.2s; letter-spacing: 0.02em;
+}
+.nav-cta:hover { background: #00f090; transform: translateY(-1px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s; }
+
+/* MOBILE NAV */
+.mobile-menu {
+  display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 999;
+  background: rgba(8,10,12,0.98); backdrop-filter: blur(20px);
+  padding: 1.5rem 5%; border-bottom: 1px solid var(--border);
+}
+.mobile-menu.open { display: block; }
+.mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.mobile-menu a { font-size: 1rem; color: var(--text-secondary); font-weight: 500; }
+
+/* PAGE SECTIONS */
+.page { display: none; min-height: 100vh; padding-top: 70px; }
+.page.active { display: block; }
+
+/* ============================================
+   HOME PAGE
+   ============================================ */
+
+/* HERO */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center;
+  overflow: hidden;
+  padding: 0 5%;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,217,126,0.06) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 50% at 20% 80%, rgba(240,192,64,0.04) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+  background-image: linear-gradient(var(--border-bright) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--border-bright) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-canvas-container {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 55%;
+  z-index: 1; opacity: 0.6;
+}
+canvas#heroChart { width: 100% !important; height: 100% !important; }
+.hero-content {
+  position: relative; z-index: 2; max-width: 600px;
+  animation: heroFadeIn 1s ease forwards;
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--emerald-glow); border: 1px solid rgba(0,217,126,0.3);
+  padding: 6px 14px; border-radius: 50px;
+  font-size: 0.78rem; font-weight: 600; color: var(--emerald);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--emerald); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+.hero h1 {
+  font-family: var(--font-display); font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 800; line-height: 1.1; letter-spacing: -2px;
+  margin-bottom: 1.5rem;
+}
+.hero h1 em { font-style: normal; color: var(--emerald); }
+.hero-sub {
+  font-size: 1.1rem; color: var(--text-secondary); line-height: 1.7;
+  max-width: 480px; margin-bottom: 2.5rem;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--emerald); color: var(--black);
+  padding: 14px 28px; border-radius: 10px;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.02em;
+  transition: all 0.25s;
+}
+.btn-primary:hover { background: #00f090; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,217,126,0.3); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; color: var(--text-primary);
+  padding: 14px 28px; border-radius: 10px;
+  border: 1px solid var(--border-bright);
+  font-size: 0.95rem; font-weight: 600;
+  transition: all 0.25s;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.04); transform: translateY(-2px); }
+.hero-stats { display: flex; gap: 2.5rem; }
+.hero-stat { }
+.hero-stat-num {
+  font-family: var(--font-display); font-size: 1.8rem; font-weight: 800;
+  color: var(--text-primary); letter-spacing: -1px;
+}
+.hero-stat-num span { color: var(--emerald); }
+.hero-stat-label { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.05em; margin-top: 2px; }
+
+/* TICKER */
+.ticker-wrap {
+  background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  overflow: hidden; padding: 10px 0; position: relative;
+}
+.ticker-track {
+  display: flex; gap: 0;
+  animation: tickerScroll 30s linear infinite;
+  width: max-content;
+}
+@keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 2.5rem; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 0.8rem;
+  border-right: 1px solid var(--border);
+}
+.ticker-sym { font-weight: 600; color: var(--text-primary); }
+.ticker-val { color: var(--text-secondary); }
+.ticker-chg.up { color: var(--emerald); }
+.ticker-chg.dn { color: #ff5555; }
+
+/* SECTION COMMON */
+section { padding: 6rem 5%; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
+  color: var(--emerald); letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--emerald); }
+.section-title {
+  font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800; line-height: 1.15; letter-spacing: -1.5px;
+  margin-bottom: 1rem;
+}
+.section-sub { font-size: 1.05rem; color: var(--text-secondary); max-width: 560px; line-height: 1.7; }
+
+/* WHY SECTION */
+.why-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5px; background: var(--border); border-radius: var(--radius-xl);
+  overflow: hidden; margin-top: 4rem; border: 1px solid var(--border);
+}
+.why-card {
+  background: var(--card); padding: 2.5rem;
+  transition: background 0.3s;
+}
+.why-card:hover { background: var(--surface); }
+.why-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--emerald-glow); border: 1px solid rgba(0,217,126,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 1.5rem;
+}
+.why-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+.why-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+
+/* SIGNALS PREVIEW */
+.signals-section { background: var(--deep); }
+.signals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+.signal-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  position: relative; overflow: hidden; transition: all 0.3s;
+}
+.signal-card:hover { border-color: var(--border-bright); transform: translateY(-3px); }
+.signal-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.signal-card.buy::before { background: var(--emerald); }
+.signal-card.sell::before { background: #ff5555; }
+.signal-card.hold::before { background: var(--gold); }
+.signal-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.signal-sym { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; }
+.signal-badge {
+  padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.signal-badge.buy { background: rgba(0,217,126,0.15); color: var(--emerald); }
+.signal-badge.sell { background: rgba(255,85,85,0.15); color: #ff5555; }
+.signal-badge.hold { background: rgba(240,192,64,0.15); color: var(--gold); }
+.signal-row { display: flex; justify-content: space-between; margin-top: 0.8rem; }
+.signal-row span:first-child { font-size: 0.8rem; color: var(--text-muted); }
+.signal-row span:last-child { font-size: 0.85rem; font-weight: 600; font-family: var(--font-mono); }
+.signal-locked {
+  position: absolute; inset: 0; border-radius: var(--radius-lg);
+  background: rgba(8,10,12,0.7); backdrop-filter: blur(6px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+}
+.signal-locked-icon { font-size: 1.8rem; }
+.signal-locked p { font-size: 0.85rem; color: var(--text-secondary); }
+.signal-locked a { font-size: 0.85rem; color: var(--emerald); font-weight: 600; }
+
+/* GROWTH CHART */
+.growth-wrap {
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center;
+  margin-top: 3rem;
+}
+.growth-stats { display: flex; flex-direction: column; gap: 1.5rem; }
+.growth-stat-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.5rem;
+  transition: all 0.3s;
+}
+.growth-stat-card:hover { border-color: rgba(0,217,126,0.3); }
+.growth-stat-num {
+  font-family: var(--font-display); font-size: 2.2rem; font-weight: 800;
+  letter-spacing: -1px; margin-bottom: 4px;
+}
+.growth-stat-num.green { color: var(--emerald); }
+.growth-stat-num.gold { color: var(--gold); }
+.growth-stat-label { font-size: 0.85rem; color: var(--text-secondary); }
+.chart-container { position: relative; height: 300px; }
+
+/* EDUCATION PREVIEW */
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 3rem; }
+.edu-pill {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.2rem 1.5rem;
+  display: flex; align-items: center; gap: 12px;
+  transition: all 0.25s; cursor: pointer;
+}
+.edu-pill:hover { border-color: rgba(0,217,126,0.3); background: var(--surface); transform: translateX(4px); }
+.edu-pill-icon { font-size: 1.2rem; width: 36px; text-align: center; }
+.edu-pill span { font-size: 0.9rem; font-weight: 500; }
+
+/* TESTIMONIALS */
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.testi-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem;
+  transition: all 0.3s;
+}
+.testi-card:hover { border-color: var(--border-bright); transform: translateY(-3px); }
+.testi-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
+.testi-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.5rem; font-style: italic; }
+.testi-text::before { content: '"'; color: var(--emerald); font-size: 1.5rem; line-height: 0; vertical-align: -6px; margin-right: 4px; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem; color: var(--black);
+  flex-shrink: 0;
+}
+.testi-name { font-weight: 600; font-size: 0.9rem; }
+.testi-role { font-size: 0.8rem; color: var(--text-muted); }
+
+/* SOCIAL */
+.social-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 3rem; }
+.social-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem 1.5rem;
+  text-align: center; transition: all 0.3s;
+}
+.social-card:hover { transform: translateY(-5px); }
+.social-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+.social-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.social-card p { font-size: 0.82rem; color: var(--text-secondary); }
+.social-num { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600; margin-top: 0.5rem; }
+
+/* HERO CTA BANNER */
+.cta-banner {
+  background: linear-gradient(135deg, rgba(0,217,126,0.08) 0%, rgba(240,192,64,0.04) 100%);
+  border: 1px solid rgba(0,217,126,0.2);
+  border-radius: var(--radius-xl); padding: 4rem;
+  text-align: center; margin: 0 5% 6rem;
+}
+.cta-banner h2 {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem;
+}
+.cta-banner p { color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1.05rem; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ============================================
+   MEMBERSHIP PAGE
+   ============================================ */
+.plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+.plan-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); padding: 2.5rem;
+  position: relative; transition: all 0.3s;
+}
+.plan-card:hover { transform: translateY(-6px); }
+.plan-card.featured {
+  border-color: rgba(0,217,126,0.4);
+  background: linear-gradient(160deg, rgba(0,217,126,0.05) 0%, var(--card) 60%);
+}
+.plan-popular {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--emerald); color: var(--black);
+  padding: 5px 20px; border-radius: 50px;
+  font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.plan-name {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.plan-tagline { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 2rem; }
+.plan-price {
+  font-family: var(--font-display); font-size: 3rem; font-weight: 800;
+  letter-spacing: -2px; margin-bottom: 0.25rem;
+}
+.plan-price sub { font-size: 1rem; font-weight: 500; letter-spacing: 0; vertical-align: bottom; color: var(--text-secondary); }
+.plan-period { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 2rem; }
+.plan-divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
+.plan-features li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.9rem; color: var(--text-secondary);
+}
+.plan-features li::before { content: '✓'; color: var(--emerald); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+.plan-features li.locked { color: var(--text-muted); }
+.plan-features li.locked::before { content: '✕'; color: var(--text-muted); }
+.plan-cta {
+  width: 100%; padding: 13px; border-radius: 10px;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.02em;
+  transition: all 0.25s;
+}
+.plan-cta.outline {
+  border: 1px solid var(--border-bright); color: var(--text-primary);
+  background: transparent;
+}
+.plan-cta.outline:hover { border-color: var(--emerald); color: var(--emerald); }
+.plan-cta.solid { background: var(--emerald); color: var(--black); }
+.plan-cta.solid:hover { background: #00f090; transform: translateY(-1px); box-shadow: 0 8px 30px rgba(0,217,126,0.3); }
+.plan-cta.gold { background: var(--gold); color: var(--black); }
+.plan-cta.gold:hover { background: #f8d060; }
+.compare-table-wrap { margin-top: 4rem; overflow-x: auto; }
+.compare-table { width: 100%; border-collapse: collapse; }
+.compare-table th, .compare-table td {
+  padding: 1rem 1.5rem; text-align: center; border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.compare-table th { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--text-primary); }
+.compare-table td:first-child { text-align: left; color: var(--text-secondary); }
+.compare-table th:first-child { text-align: left; }
+.check { color: var(--emerald); font-size: 1.1rem; }
+.cross { color: var(--text-muted); }
+
+/* ============================================
+   EDUCATION HUB
+   ============================================ */
+.edu-hero { padding: 4rem 5% 2rem; }
+.edu-search-wrap {
+  display: flex; gap: 1rem; margin-top: 2rem;
+  max-width: 600px;
+}
+.edu-search {
+  flex: 1; background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 18px; color: var(--text-primary);
+  font-size: 0.95rem; font-family: var(--font-body); outline: none;
+  transition: border-color 0.2s;
+}
+.edu-search:focus { border-color: var(--emerald); }
+.edu-search::placeholder { color: var(--text-muted); }
+.categories-wrap { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.cat-pill {
+  padding: 7px 16px; border-radius: 50px; border: 1px solid var(--border);
+  font-size: 0.82rem; font-weight: 500; color: var(--text-secondary);
+  background: var(--card); cursor: pointer; transition: all 0.2s;
+}
+.cat-pill:hover, .cat-pill.active { background: var(--emerald); border-color: var(--emerald); color: var(--black); }
+.edu-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.edu-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  transition: all 0.3s;
+}
+.edu-card:hover { transform: translateY(-4px); border-color: var(--border-bright); }
+.edu-card-thumb {
+  height: 140px; display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+}
+.edu-card-body { padding: 1.5rem; }
+.edu-card-category { font-size: 0.75rem; font-weight: 600; color: var(--emerald); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.edu-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
+.edu-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
+.edu-card-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; }
+.edu-level { font-size: 0.75rem; padding: 3px 10px; border-radius: 50px; font-weight: 600; }
+.edu-level.beginner { background: rgba(0,217,126,0.1); color: var(--emerald); }
+.edu-level.intermediate { background: rgba(240,192,64,0.1); color: var(--gold); }
+.edu-level.advanced { background: rgba(255,85,85,0.1); color: #ff5555; }
+.edu-time { font-size: 0.8rem; color: var(--text-muted); }
+.edu-locked-card { position: relative; }
+.edu-locked-card .edu-card-body { filter: blur(3px); pointer-events: none; user-select: none; }
+.edu-lock-overlay {
+  position: absolute; inset: 0; background: rgba(8,10,12,0.6);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-radius: var(--radius-lg); gap: 8px;
+}
+.edu-lock-overlay span:first-child { font-size: 1.8rem; }
+.edu-lock-overlay span:last-child { font-size: 0.82rem; color: var(--text-secondary); }
+
+/* ============================================
+   PORTFOLIO TRACKER
+   ============================================ */
+.portfolio-layout { display: grid; grid-template-columns: 300px 1fr; gap: 1.5rem; padding: 2rem 5%; }
+.portfolio-sidebar {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  height: fit-content; position: sticky; top: 90px;
+}
+.portfolio-sidebar h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; }
+.add-holding-form { display: flex; flex-direction: column; gap: 0.75rem; }
+.form-input {
+  width: 100%; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 10px 14px; color: var(--text-primary);
+  font-size: 0.88rem; font-family: var(--font-body); outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--emerald); }
+.form-input::placeholder { color: var(--text-muted); }
+.form-btn {
+  width: 100%; padding: 11px; background: var(--emerald); color: var(--black);
+  border-radius: var(--radius); font-size: 0.9rem; font-weight: 700; transition: all 0.2s;
+}
+.form-btn:hover { background: #00f090; }
+.holdings-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; }
+.holding-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.75rem 1rem; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+}
+.holding-sym { font-family: var(--font-mono); font-size: 0.88rem; font-weight: 600; }
+.holding-pnl { font-size: 0.82rem; font-weight: 600; font-family: var(--font-mono); }
+.holding-pnl.pos { color: var(--emerald); }
+.holding-pnl.neg { color: #ff5555; }
+.portfolio-main { display: flex; flex-direction: column; gap: 1.5rem; }
+.port-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem;
+}
+.port-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 1.5rem; }
+.port-total { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; }
+.port-change { font-size: 0.9rem; color: var(--emerald); font-weight: 600; margin-top: 4px; }
+.port-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.port-stat { background: var(--surface); border-radius: var(--radius); padding: 1rem; }
+.port-stat-label { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+.port-stat-val { font-family: var(--font-mono); font-size: 1rem; font-weight: 600; }
+.chart-h { height: 250px; position: relative; }
+.chart-doughnut { height: 220px; position: relative; }
+.watchlist-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+.watch-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.75rem 1rem; border: 1px solid var(--border);
+  border-radius: var(--radius); transition: all 0.2s;
+}
+.watch-row:hover { border-color: var(--border-bright); background: var(--surface); }
+.watch-sym { font-family: var(--font-display); font-weight: 700; }
+.watch-name { font-size: 0.8rem; color: var(--text-muted); }
+.watch-price { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; }
+.watch-chg { font-size: 0.8rem; font-weight: 600; font-family: var(--font-mono); }
+
+/* ============================================
+   ABOUT PAGE
+   ============================================ */
+.about-hero { padding: 5rem 5% 3rem; display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; }
+.about-visual {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); padding: 2.5rem;
+  position: relative; overflow: hidden;
+}
+.about-visual::before {
+  content: ''; position: absolute; top: -50%; right: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle, var(--emerald-glow) 0%, transparent 60%);
+}
+.about-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; position: relative; }
+.about-metric { background: var(--surface); border-radius: var(--radius); padding: 1.5rem; border: 1px solid var(--border); }
+.about-metric-num { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--emerald); letter-spacing: -1px; }
+.about-metric-label { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+.values-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.value-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem;
+  transition: all 0.3s;
+}
+.value-card:hover { border-color: rgba(0,217,126,0.2); transform: translateY(-3px); }
+.value-num { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; color: var(--emerald-glow-strong); opacity: 0.3; line-height: 1; margin-bottom: 0.5rem; }
+.value-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+.value-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+.philosophy-section {
+  background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 5rem 5%;
+}
+.philosophy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+.phil-quote {
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+  line-height: 1.5; color: var(--text-primary);
+  border-left: 3px solid var(--emerald); padding-left: 1.5rem;
+}
+.phil-points { display: flex; flex-direction: column; gap: 1rem; }
+.phil-point { display: flex; align-items: flex-start; gap: 12px; }
+.phil-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); flex-shrink: 0; margin-top: 8px; }
+.phil-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+
+/* ============================================
+   CONTACT PAGE
+   ============================================ */
+.contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; padding: 4rem 5%; }
+.contact-channels { display: flex; flex-direction: column; gap: 1rem; }
+.channel-card {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  transition: all 0.3s; text-decoration: none;
+}
+.channel-card:hover { transform: translateX(6px); border-color: var(--border-bright); }
+.channel-icon-wrap { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.channel-info h3 { font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+.channel-info p { font-size: 0.82rem; color: var(--text-secondary); }
+.channel-arrow { margin-left: auto; color: var(--text-muted); font-size: 1.2rem; }
+.contact-form-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); padding: 2.5rem;
+}
+.contact-form-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
+.contact-form-card p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 2rem; }
+.form-group { margin-bottom: 1.2rem; }
+.form-label { font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 6px; letter-spacing: 0.04em; }
+.form-select {
+  width: 100%; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 10px 14px; color: var(--text-primary);
+  font-size: 0.88rem; font-family: var(--font-body); outline: none;
+  transition: border-color 0.2s; appearance: none;
+}
+.form-select:focus { border-color: var(--emerald); }
+.form-textarea {
+  width: 100%; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 10px 14px; color: var(--text-primary);
+  font-size: 0.88rem; font-family: var(--font-body); outline: none;
+  transition: border-color 0.2s; resize: vertical; min-height: 100px;
+}
+.form-textarea:focus { border-color: var(--emerald); }
+.faq-section { padding: 4rem 5%; }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+.faq-item {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+}
+.faq-q {
+  padding: 1.25rem 1.5rem; font-weight: 600; font-size: 0.92rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.2s;
+}
+.faq-q:hover { background: var(--surface); }
+.faq-q .toggle { color: var(--emerald); font-size: 1.2rem; transition: transform 0.3s; }
+.faq-q.open .toggle { transform: rotate(45deg); }
+.faq-a {
+  padding: 0 1.5rem 1.25rem; font-size: 0.88rem; color: var(--text-secondary);
+  line-height: 1.7; display: none;
+}
+.faq-a.open { display: block; }
+
+/* FLOATING SOCIAL */
+.floating-socials {
+  position: fixed; right: 20px; bottom: 30px; z-index: 900;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.float-btn {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; transition: all 0.25s; cursor: pointer;
+  border: 1px solid var(--border);
+}
+.float-btn:hover { transform: scale(1.1) translateX(-4px); }
+.float-tg { background: #229ed9; }
+.float-wa { background: #25d366; }
+.float-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+/* FOOTER */
+footer {
+  background: var(--deep); border-top: 1px solid var(--border);
+  padding: 3rem 5%; display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+}
+.footer-brand h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem; }
+.footer-brand h2 span { color: var(--emerald); }
+.footer-brand p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; max-width: 280px; }
+.footer-disclaimer {
+  font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;
+  padding: 0.75rem; background: rgba(255,255,255,0.02);
+  border-radius: 6px; border: 1px solid var(--border); line-height: 1.6;
+}
+.footer-col h4 { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col a { font-size: 0.88rem; color: var(--text-secondary); transition: color 0.2s; }
+.footer-col a:hover { color: var(--emerald); }
+.footer-bottom {
+  background: var(--black); padding: 1.5rem 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border);
+}
+.footer-bottom p { font-size: 0.8rem; color: var(--text-muted); }
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: all 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .hero-canvas-container { opacity: 0.2; width: 100%; }
+  .hero h1 { font-size: 2.6rem; }
+  .plans-grid { grid-template-columns: 1fr; }
+  .signals-grid, .growth-wrap, .about-hero, .philosophy-grid, .contact-layout, .faq-grid { grid-template-columns: 1fr; }
+  .portfolio-layout { grid-template-columns: 1fr; }
+  .portfolio-sidebar { position: static; }
+  footer { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  section { padding: 4rem 5%; }
+  .hero h1 { font-size: 2rem; }
+  .hero-stats { flex-direction: column; gap: 1rem; }
+  footer { grid-template-columns: 1fr; }
+  .port-stats { grid-template-columns: 1fr; }
+}
+
+/* Animations */
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes glow { 0%,100%{opacity:0.5} 50%{opacity:1} }
+.float { animation: float 4s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="logo-mark">SR</div>
+    <span><span class="logo-sr">SR</span><span class="logo-finvest">Finvest</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+    <li><a href="#" onclick="showPage('membership')" id="nav-membership">Membership</a></li>
+    <li><a href="#" onclick="showPage('education')" id="nav-education">Education</a></li>
+    <li><a href="#" onclick="showPage('portfolio')" id="nav-portfolio">Portfolio</a></li>
+    <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/your-number" class="nav-cta" target="_blank">Join Now →</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#" onclick="showPage('home');toggleMenu()">Home</a></li>
+    <li><a href="#" onclick="showPage('membership');toggleMenu()">Membership</a></li>
+    <li><a href="#" onclick="showPage('education');toggleMenu()">Education</a></li>
+    <li><a href="#" onclick="showPage('portfolio');toggleMenu()">Portfolio</a></li>
+    <li><a href="#" onclick="showPage('about');toggleMenu()">About</a></li>
+    <li><a href="#" onclick="showPage('contact');toggleMenu()">Contact</a></li>
+  </ul>
+</div>
+
+<!-- FLOATING SOCIALS -->
+<div class="floating-socials">
+  <a href="https://t.me/srfinvest" target="_blank" class="float-btn float-tg" title="Telegram">✈️</a>
+  <a href="https://wa.me/your-number" target="_blank" class="float-btn float-wa" title="WhatsApp">💬</a>
+  <a href="https://instagram.com/srfinvest" target="_blank" class="float-btn float-ig" title="Instagram">📸</a>
+</div>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <canvas id="heroChart" class="hero-canvas-container"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge"><div class="hero-badge-dot"></div>India's #1 Trading Assistance Platform</div>
+      <h1>Trade Smarter.<br><em>Grow Faster.</em><br>Win Bigger.</h1>
+      <p class="hero-sub">Premium signals, expert education, real-time market insights and an elite community — everything you need to level up your trading game.</p>
+      <div class="hero-btns">
+        <a href="https://t.me/srfinvest" target="_blank" class="btn-primary">✈️ Join Telegram</a>
+        <a href="https://wa.me/your-number" target="_blank" class="btn-secondary">💬 WhatsApp Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span class="counter" data-target="5200">0</span>+</div>
+          <div class="hero-stat-label">Active Members</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span class="counter" data-target="87">0</span>%</div>
+          <div class="hero-stat-label">Signal Accuracy</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span class="counter" data-target="3">0</span>+</div>
+          <div class="hero-stat-label">Years of Excellence</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+
+  <!-- WHY CHOOSE US -->
+  <section>
+    <div class="section-label">Why SR Finvest</div>
+    <h2 class="section-title">Built for serious<br>traders. By traders.</h2>
+    <p class="section-sub">We don't just give you signals — we build complete, confident traders through education, community and real market insight.</p>
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <h3>High-Accuracy Signals</h3>
+        <p>Carefully researched trading signals for equity, F&O, and crypto markets with defined entry, exit, and stop-loss levels.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <h3>Real-Time Market Insights</h3>
+        <p>Daily pre-market analysis, sector rotation updates, and macro-level market commentary from our expert team.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎓</div>
+        <h3>Deep Market Education</h3>
+        <p>From candlestick basics to advanced options strategies — our structured learning path turns beginners into pros.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💼</div>
+        <h3>Portfolio Tracking Tools</h3>
+        <p>Track your holdings, visualize P&L, and monitor your allocation breakdown with our intuitive dashboard.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏆</div>
+        <h3>Elite Community</h3>
+        <p>Join thousands of active traders sharing ideas, analysis, and opportunities in our premium Telegram and WhatsApp groups.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <h3>100% Transparent</h3>
+        <p>We show all calls — wins and losses. Our track record is fully public, reviewed monthly with detailed performance stats.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNALS PREVIEW -->
+  <section class="signals-section">
+    <div class="section-label">Signal Preview</div>
+    <h2 class="section-title">Live Trading Signals</h2>
+    <p class="section-sub">A glimpse of the high-quality signals our members receive daily. Join to unlock all signals.</p>
+    <div class="signals-grid reveal">
+      <div class="signal-card buy">
+        <div class="signal-meta">
+          <span class="signal-sym">RELIANCE</span>
+          <span class="signal-badge buy">BUY</span>
+        </div>
+        <div class="signal-row"><span>Entry</span><span>₹2,847.50</span></div>
+        <div class="signal-row"><span>Target 1</span><span>₹2,920.00</span></div>
+        <div class="signal-row"><span>Target 2</span><span>₹2,990.00</span></div>
+        <div class="signal-row"><span>Stop Loss</span><span>₹2,800.00</span></div>
+        <div class="signal-row"><span>Timeframe</span><span>2-3 Days</span></div>
+      </div>
+      <div class="signal-card sell">
+        <div class="signal-meta">
+          <span class="signal-sym">NIFTY 50</span>
+          <span class="signal-badge sell">SHORT</span>
+        </div>
+        <div class="signal-row"><span>Entry</span><span>24,380</span></div>
+        <div class="signal-row"><span>Target 1</span><span>24,150</span></div>
+        <div class="signal-row"><span>Target 2</span><span>23,900</span></div>
+        <div class="signal-row"><span>Stop Loss</span><span>24,520</span></div>
+        <div class="signal-row"><span>Timeframe</span><span>Intraday</span></div>
+      </div>
+      <div class="signal-card buy" style="position:relative">
+        <div class="signal-meta">
+          <span class="signal-sym">TATAMOTORS</span>
+          <span class="signal-badge buy">BUY</span>
+        </div>
+        <div class="signal-row"><span>Entry</span><span>₹998.00</span></div>
+        <div class="signal-row"><span>Target 1</span><span>₹1,040.00</span></div>
+        <div class="signal-row"><span>Stop Loss</span><span>₹970.00</span></div>
+        <div class="signal-locked">
+          <div class="signal-locked-icon">🔒</div>
+          <p>VIP Signal — Members Only</p>
+          <a href="#" onclick="showPage('membership')">Unlock with Membership →</a>
+        </div>
+      </div>
+      <div class="signal-card hold" style="position:relative">
+        <div class="signal-meta">
+          <span class="signal-sym">HDFC BANK</span>
+          <span class="signal-badge hold">HOLD</span>
+        </div>
+        <div class="signal-row"><span>Entry</span><span>₹1,765.00</span></div>
+        <div class="signal-row"><span>Target</span><span>₹1,900.00</span></div>
+        <div class="signal-row"><span>Stop Loss</span><span>₹1,720.00</span></div>
+        <div class="signal-locked">
+          <div class="signal-locked-icon">🔒</div>
+          <p>Premium Signal — Members Only</p>
+          <a href="#" onclick="showPage('membership')">Join SR Finvest →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO GROWTH -->
+  <section>
+    <div class="section-label">Performance</div>
+    <h2 class="section-title">Our Track Record</h2>
+    <div class="growth-wrap reveal">
+      <div class="growth-stats">
+        <div class="growth-stat-card">
+          <div class="growth-stat-num green">+143%</div>
+          <div class="growth-stat-label">Average portfolio growth — model portfolio (FY 2024-25)</div>
+        </div>
+        <div class="growth-stat-card">
+          <div class="growth-stat-num green">87%</div>
+          <div class="growth-stat-label">Signal accuracy rate — last 6 months</div>
+        </div>
+        <div class="growth-stat-card">
+          <div class="growth-stat-num gold">₹3.2Cr+</div>
+          <div class="growth-stat-label">Total community profits tracked this year</div>
+        </div>
+        <div class="growth-stat-card">
+          <div class="growth-stat-num green">340+</div>
+          <div class="growth-stat-label">Winning signals delivered in 2024</div>
+        </div>
+      </div>
+      <div>
+        <div class="chart-container">
+          <canvas id="growthChart" role="img" aria-label="Portfolio growth chart showing consistent growth over 12 months">Model portfolio monthly returns</canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION PREVIEW -->
+  <section style="background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="section-label">Learning Hub</div>
+    <h2 class="section-title">Master the markets</h2>
+    <p class="section-sub">Structured learning paths for every stage of your trading journey.</p>
+    <div class="edu-grid reveal" style="margin-top: 2.5rem;">
+      <div class="edu-pill" onclick="showPage('education')"><div class="edu-pill-icon">📈</div><span>Technical Analysis</span></div>
+      <div class="edu-pill" onclick="showPage('education')"><div class="edu-pill-icon">🕯️</div><span>Candlestick Patterns</span></div>
+      <div class="edu-pill" onclick="showPage('education')"><div class="edu-pill-icon">🧠</div><span>Trading Psychology</span></div>
+      <div class="edu-pill" onclick="showPage('education')"><div class="edu-pill-icon">🛡️</div><span>Risk Management</span></div>
+      <div class="edu-pill" onclick="showPage('education')"><div class="edu-pill-icon">⚡</div><span>Intraday Basics</span></div>
+      <div class="edu-pill" onclick="showPage('education')"><div class="edu-pill-icon">🌊</div><span>Swing Trading</span></div>
+      <div class="edu-pill" onclick="showPage('education')"><div class="edu-pill-icon">🔰</div><span>Beginner's Path</span></div>
+      <div class="edu-pill" onclick="showPage('education')"><div class="edu-pill-icon">📖</div><span>Market Fundamentals</span></div>
+    </div>
+    <div style="margin-top: 2.5rem; text-align: center;">
+      <a href="#" onclick="showPage('education')" class="btn-primary" style="display:inline-flex;">Explore Education Hub →</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="section-label">Community Love</div>
+    <h2 class="section-title">What our members say</h2>
+    <div class="testimonials-grid reveal">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">SR Finvest completely changed how I trade. The signals are precise, the education is world-class, and the community is incredibly supportive. My portfolio is up 60% this year alone.</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background: var(--emerald); color: var(--black);">RK</div>
+          <div>
+            <div class="testi-name">Rajesh Kumar</div>
+            <div class="testi-role">VIP Member · Mumbai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">I was a complete beginner 8 months ago. Now I'm consistently profitable thanks to the structured education and the mentorship from the SR Finvest team. Worth every rupee.</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background: #7c5cfc; color: white;">PR</div>
+          <div>
+            <div class="testi-name">Priya Rao</div>
+            <div class="testi-role">Premium Member · Hyderabad</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">The transparency is what got me. They show every call — wins and losses. That kind of honesty is rare in this space. The community is also extremely active and helpful.</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background: var(--gold); color: var(--black);">AS</div>
+          <div>
+            <div class="testi-name">Aditya Sharma</div>
+            <div class="testi-role">VIP Member · Delhi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL ECOSYSTEM -->
+  <section style="background: var(--deep); border-top: 1px solid var(--border);">
+    <div class="section-label">Community</div>
+    <h2 class="section-title">Join our ecosystem</h2>
+    <p class="section-sub">Connect across platforms. Our community is active 24/7 — market hours and beyond.</p>
+    <div class="social-grid reveal">
+      <div class="social-card" style="border-color: rgba(35,158,217,0.3);">
+        <div class="social-icon">✈️</div>
+        <h3>Telegram</h3>
+        <p>Main signals & discussion group</p>
+        <div class="social-num" style="color: #229ed9;">3,800+ Members</div>
+      </div>
+      <div class="social-card" style="border-color: rgba(37,211,102,0.3);">
+        <div class="social-icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Quick alerts & support channel</p>
+        <div class="social-num" style="color: #25d366;">1,400+ Members</div>
+      </div>
+      <div class="social-card" style="border-color: rgba(220,39,67,0.3);">
+        <div class="social-icon">📸</div>
+        <h3>Instagram</h3>
+        <p>Daily charts & market insights</p>
+        <div class="social-num" style="color: #e1306c;">8,200 Followers</div>
+      </div>
+      <div class="social-card" style="border-color: rgba(255,255,255,0.1);">
+        <div class="social-icon">🐦</div>
+        <h3>X (Twitter)</h3>
+        <p>Real-time market commentary</p>
+        <div class="social-num" style="color: #aaa;">2,100 Followers</div>
+      </div>
+      <div class="social-card" style="border-color: rgba(10,102,194,0.3);">
+        <div class="social-icon">💼</div>
+        <h3>LinkedIn</h3>
+        <p>Professional updates & insights</p>
+        <div class="social-num" style="color: #0a66c2;">950+ Connections</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner reveal">
+    <h2>Ready to trade like the <em style="font-style:normal;color:var(--emerald)">top 1%?</em></h2>
+    <p>Join over 5,200 members who are already using SR Finvest to grow their wealth systematically.</p>
+    <div class="cta-btns">
+      <a href="https://t.me/srfinvest" target="_blank" class="btn-primary">✈️ Join Telegram Group</a>
+      <a href="https://wa.me/your-number" target="_blank" class="btn-secondary">💬 Message on WhatsApp</a>
+    </div>
+  </div>
+
+</div>
+<!-- END HOME PAGE -->
+
+
+<!-- ===================== MEMBERSHIP PAGE ===================== -->
+<div class="page" id="page-membership">
+  <section style="padding-top: 4rem;">
+    <div class="section-label">Membership Plans</div>
+    <h2 class="section-title">Choose your edge</h2>
+    <p class="section-sub">Every tier is designed to give you exactly what you need — whether you're just starting or already serious about trading.</p>
+    <div class="plans-grid reveal">
+      <!-- BASIC -->
+      <div class="plan-card">
+        <div class="plan-name">Basic</div>
+        <div class="plan-tagline">Perfect for beginners stepping into trading</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>5 Equity Signals / Month</li>
+          <li>Basic Market Updates</li>
+          <li>Access to Beginner Education</li>
+          <li>Community Telegram Access</li>
+          <li>Weekly Market Recap</li>
+          <li class="locked">F&O Signals</li>
+          <li class="locked">Live Webinars</li>
+          <li class="locked">1:1 Mentorship</li>
+          <li class="locked">VIP Group Access</li>
+        </ul>
+        <button class="plan-cta outline" onclick="showPage('contact')">Contact to Join</button>
+      </div>
+      <!-- PREMIUM -->
+      <div class="plan-card featured">
+        <div class="plan-popular">Most Popular</div>
+        <div class="plan-name" style="color: var(--emerald);">Premium</div>
+        <div class="plan-tagline">For active traders who want consistent profits</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Unlimited Equity Signals</li>
+          <li>15 F&O Signals / Month</li>
+          <li>Daily Pre-Market Analysis</li>
+          <li>Full Education Hub Access</li>
+          <li>Premium Telegram Group</li>
+          <li>Weekly Live Webinars</li>
+          <li>Monthly Performance Report</li>
+          <li>Dedicated Support</li>
+          <li class="locked">1:1 Mentorship Sessions</li>
+        </ul>
+        <button class="plan-cta solid" onclick="showPage('contact')">Contact to Join →</button>
+      </div>
+      <!-- VIP -->
+      <div class="plan-card">
+        <div class="plan-name" style="color: var(--gold);">VIP Elite</div>
+        <div class="plan-tagline">For serious traders who demand the absolute best</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>All Premium Features</li>
+          <li>Unlimited F&O + Options Signals</li>
+          <li>Intraday Premium Calls</li>
+          <li>Monthly 1:1 Mentorship</li>
+          <li>Private VIP Telegram Channel</li>
+          <li>Direct Access to Analysts</li>
+          <li>Portfolio Review Sessions</li>
+          <li>Early Access — All Features</li>
+          <li>Priority WhatsApp Support</li>
+        </ul>
+        <button class="plan-cta gold" onclick="showPage('contact')">Contact to Join →</button>
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="compare-table-wrap reveal" style="margin-top: 4rem;">
+      <div class="section-label">Compare Plans</div>
+      <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 2rem;">Feature Comparison</h3>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Basic</th>
+            <th style="color: var(--emerald)">Premium</th>
+            <th style="color: var(--gold)">VIP Elite</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Equity Signals</td><td>5/month</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><td>F&O Signals</td><td class="cross">✕</td><td>15/month</td><td>Unlimited</td></tr>
+          <tr><td>Intraday Calls</td><td class="cross">✕</td><td class="cross">✕</td><td class="check">✓</td></tr>
+          <tr><td>Options Signals</td><td class="cross">✕</td><td class="cross">✕</td><td class="check">✓</td></tr>
+          <tr><td>Daily Analysis</td><td class="cross">✕</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Education Hub</td><td>Beginner only</td><td>Full Access</td><td>Full + Exclusive</td></tr>
+          <tr><td>Live Webinars</td><td class="cross">✕</td><td>Monthly</td><td>Weekly</td></tr>
+          <tr><td>1:1 Mentorship</td><td class="cross">✕</td><td class="cross">✕</td><td class="check">✓</td></tr>
+          <tr><td>Portfolio Review</td><td class="cross">✕</td><td class="cross">✕</td><td class="check">✓</td></tr>
+          <tr><td>Support</td><td>Community</td><td>Dedicated</td><td>Priority 24/7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta-banner reveal" style="margin: 4rem 0 2rem;">
+      <h2>No online payments. <em style="font-style:normal;color:var(--emerald)">Zero risk.</em></h2>
+      <p>All memberships are onboarded manually through WhatsApp or Telegram. Reach out and we'll guide you through the process personally.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/your-number" target="_blank" class="btn-primary">💬 WhatsApp to Join</a>
+        <a href="https://t.me/srfinvest" target="_blank" class="btn-secondary">✈️ Telegram Group</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ===================== EDUCATION HUB ===================== -->
+<div class="page" id="page-education">
+  <div class="edu-hero">
+    <div class="section-label">Education Hub</div>
+    <h2 class="section-title">Learn. Practice. Master.</h2>
+    <p class="section-sub">Structured trading education from zero to hero. Our curriculum is designed by professional traders with 10+ years of market experience.</p>
+    <div class="edu-search-wrap">
+      <input type="text" class="edu-search" placeholder="Search topics, patterns, strategies..." id="eduSearch" oninput="filterEdu()">
+    </div>
+  </div>
+
+  <section style="padding-top: 1rem;">
+    <div class="categories-wrap">
+      <div class="cat-pill active" onclick="filterCat('all',this)">All Topics</div>
+      <div class="cat-pill" onclick="filterCat('beginner',this)">Beginner</div>
+      <div class="cat-pill" onclick="filterCat('technical',this)">Technical Analysis</div>
+      <div class="cat-pill" onclick="filterCat('candlestick',this)">Candlestick</div>
+      <div class="cat-pill" onclick="filterCat('psychology',this)">Psychology</div>
+      <div class="cat-pill" onclick="filterCat('risk',this)">Risk Management</div>
+      <div class="cat-pill" onclick="filterCat('swing',this)">Swing Trading</div>
+      <div class="cat-pill" onclick="filterCat('intraday',this)">Intraday</div>
+    </div>
+
+    <div class="edu-cards-grid" id="eduGrid">
+      <!-- Cards generated by JS -->
+    </div>
+  </section>
+</div>
+
+
+<!-- ===================== PORTFOLIO TRACKER ===================== -->
+<div class="page" id="page-portfolio">
+  <div style="padding: 2rem 5% 1rem;">
+    <div class="section-label">Portfolio Tracker</div>
+    <h2 class="section-title" style="font-size: 2rem;">My Portfolio</h2>
+    <p style="color: var(--text-secondary); font-size: 0.9rem;">Track holdings, visualize performance, monitor your watchlist — all in one place.</p>
+  </div>
+
+  <div class="portfolio-layout">
+    <!-- SIDEBAR -->
+    <div class="portfolio-sidebar">
+      <h3>➕ Add Holding</h3>
+      <div class="add-holding-form">
+        <input type="text" class="form-input" id="holdSym" placeholder="Symbol (e.g. RELIANCE)">
+        <input type="number" class="form-input" id="holdQty" placeholder="Quantity">
+        <input type="number" class="form-input" id="holdAvg" placeholder="Avg Buy Price (₹)">
+        <input type="number" class="form-input" id="holdCmp" placeholder="Current Price (₹)">
+        <button class="form-btn" onclick="addHolding()">Add to Portfolio</button>
+      </div>
+      <div class="holdings-list" id="holdingsList"></div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="portfolio-main">
+      <!-- TOTAL VALUE -->
+      <div class="port-card">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.5rem;">Total Portfolio Value</p>
+            <div class="port-total" id="portTotal">₹0</div>
+            <div class="port-change" id="portChange">+₹0 (0.00%)</div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span style="background: rgba(0,217,126,0.1); color: var(--emerald); padding: 5px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">Live</span>
+          </div>
+        </div>
+        <div class="port-stats" id="portStats">
+          <div class="port-stat"><div class="port-stat-label">Invested</div><div class="port-stat-val" id="portInvested">₹0</div></div>
+          <div class="port-stat"><div class="port-stat-label">P&L</div><div class="port-stat-val" id="portPnl">₹0</div></div>
+          <div class="port-stat"><div class="port-stat-label">Holdings</div><div class="port-stat-val" id="portCount">0</div></div>
+        </div>
+      </div>
+
+      <!-- CHARTS ROW -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div class="port-card">
+          <h3>📈 P&L History</h3>
+          <div class="chart-h">
+            <canvas id="pnlChart" role="img" aria-label="Monthly P&L chart">P&L history chart</canvas>
+          </div>
+        </div>
+        <div class="port-card">
+          <h3>🥧 Allocation</h3>
+          <div class="chart-doughnut">
+            <canvas id="allocChart" role="img" aria-label="Portfolio allocation donut chart">Allocation chart</canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- WATCHLIST -->
+      <div class="port-card">
+        <h3>👁️ Watchlist</h3>
+        <div class="watchlist-grid" id="watchlist">
+          <div class="watch-row">
+            <div><div class="watch-sym">NIFTY 50</div><div class="watch-name">Nifty 50 Index</div></div>
+            <div style="text-align: right;"><div class="watch-price">24,320.80</div><div class="watch-chg" style="color: var(--emerald);">+0.48%</div></div>
+          </div>
+          <div class="watch-row">
+            <div><div class="watch-sym">BANKNIFTY</div><div class="watch-name">Bank Nifty Index</div></div>
+            <div style="text-align: right;"><div class="watch-price">51,240.50</div><div class="watch-chg" style="color: #ff5555;">-0.32%</div></div>
+          </div>
+          <div class="watch-row">
+            <div><div class="watch-sym">RELIANCE</div><div class="watch-name">Reliance Industries</div></div>
+            <div style="text-align: right;"><div class="watch-price">₹2,860.40</div><div class="watch-chg" style="color: var(--emerald);">+1.24%</div></div>
+          </div>
+          <div class="watch-row">
+            <div><div class="watch-sym">TCS</div><div class="watch-name">Tata Consultancy Services</div></div>
+            <div style="text-align: right;"><div class="watch-price">₹4,210.00</div><div class="watch-chg" style="color: var(--emerald);">+0.87%</div></div>
+          </div>
+          <div class="watch-row">
+            <div><div class="watch-sym">INFY</div><div class="watch-name">Infosys Ltd</div></div>
+            <div style="text-align: right;"><div class="watch-price">₹1,640.20</div><div class="watch-chg" style="color: #ff5555;">-0.55%</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===================== ABOUT PAGE ===================== -->
+<div class="page" id="page-about">
+
+  <div class="about-hero">
+    <div>
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">We're traders,<br>just like you.</h2>
+      <p class="section-sub" style="margin-bottom: 2rem;">SR Finvest was born out of frustration. Our founders — both experienced market participants — saw how hard it was for retail investors to get access to quality analysis, real mentorship, and an honest community.</p>
+      <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;">So we built SR Finvest — a platform where signals aren't just generated, but are researched, debated, and documented. Where education isn't just content, but mentorship. Where community isn't just a group, but a family of serious market participants.</p>
+      <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-top: 1rem;">Today, SR Finvest serves 5,200+ members across India with premium trading assistance, education, and market insights.</p>
+    </div>
+    <div class="about-visual">
+      <div class="about-metrics">
+        <div class="about-metric">
+          <div class="about-metric-num">5200+</div>
+          <div class="about-metric-label">Active Members</div>
+        </div>
+        <div class="about-metric">
+          <div class="about-metric-num">87%</div>
+          <div class="about-metric-label">Signal Accuracy</div>
+        </div>
+        <div class="about-metric">
+          <div class="about-metric-num">3+ Yrs</div>
+          <div class="about-metric-label">Track Record</div>
+        </div>
+        <div class="about-metric">
+          <div class="about-metric-num">340+</div>
+          <div class="about-metric-label">Winning Calls '24</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding-top: 2rem;">
+    <div class="section-label">Our Values</div>
+    <h2 class="section-title">What we stand for</h2>
+    <div class="values-grid reveal">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <div class="value-title">Radical Transparency</div>
+        <p class="value-text">We publish every signal — hits and misses. Our monthly performance reports are public. No hiding, no cherrypicking. Just honest numbers.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <div class="value-title">Education First</div>
+        <p class="value-text">We don't want members dependent on our signals forever. We want to make you a self-sufficient, confident trader who understands every call.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <div class="value-title">Risk is Sacred</div>
+        <p class="value-text">Every signal comes with a stop-loss. We never encourage gambling with capital. Risk management is embedded in everything we teach and do.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">04</div>
+        <div class="value-title">Community Over Competition</div>
+        <p class="value-text">The market is big enough for all of us. Our community shares ideas freely, calls out bad trades, and grows together without gatekeeping.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="philosophy-section">
+    <div class="section-label">Philosophy</div>
+    <h2 class="section-title">Trading is a craft,<br>not a gamble.</h2>
+    <div class="philosophy-grid">
+      <div class="phil-quote">
+        "We believe disciplined, research-backed trading is the only sustainable path to wealth creation in the markets."
+      </div>
+      <div class="phil-points">
+        <div class="phil-point"><div class="phil-dot"></div><p class="phil-text">Every entry and exit is backed by technical and fundamental analysis — not gut feeling or tips.</p></div>
+        <div class="phil-point"><div class="phil-dot"></div><p class="phil-text">Position sizing and stop-losses are non-negotiable. Capital preservation comes before profit chasing.</p></div>
+        <div class="phil-point"><div class="phil-dot"></div><p class="phil-text">Consistency over moonshots. Our members build systematic, repeatable trading processes.</p></div>
+        <div class="phil-point"><div class="phil-dot"></div><p class="phil-text">Psychology matters as much as strategy. We teach emotional discipline alongside technical skills.</p></div>
+        <div class="phil-point"><div class="phil-dot"></div><p class="phil-text">SR Finvest does not take your money. We help you manage it better yourself.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <section style="background: rgba(255,85,85,0.04); border-top: 1px solid rgba(255,85,85,0.15); border-bottom: 1px solid rgba(255,85,85,0.15);">
+    <div class="section-label" style="color: #ff8888;">Legal Notice</div>
+    <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Disclaimer</h3>
+    <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; max-width: 800px;">
+      <strong style="color: var(--text-primary);">SR Finvest is a trading assistance and financial education platform.</strong> We do NOT provide SEBI-registered investment advisory services, and we are NOT a registered investment advisor (RIA) or a broker. All content shared including signals, analysis, and market insights is for <strong style="color: var(--text-primary)">educational and informational purposes only</strong> and does not constitute financial advice.<br><br>
+      Trading in equities, F&O, and other financial instruments involves substantial risk of loss. Past performance is not indicative of future results. Please consult a SEBI-registered investment advisor before making any investment decisions. SR Finvest does not take responsibility for any trading losses incurred based on our content.
+    </p>
+  </section>
+</div>
+
+
+<!-- ===================== CONTACT PAGE ===================== -->
+<div class="page" id="page-contact">
+  <section style="padding-bottom: 2rem;">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Join our community</h2>
+    <p class="section-sub">Membership onboarding happens through WhatsApp and Telegram. Reach out and we'll guide you personally.</p>
+  </section>
+
+  <div class="contact-layout">
+    <div>
+      <h3 style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;">Connect with us</h3>
+      <div class="contact-channels">
+        <a href="https://wa.me/your-number" target="_blank" class="channel-card">
+          <div class="channel-icon-wrap" style="background: rgba(37,211,102,0.15);">💬</div>
+          <div class="channel-info">
+            <h3>WhatsApp</h3>
+            <p>Primary support & membership channel</p>
+          </div>
+          <div class="channel-arrow">→</div>
+        </a>
+        <a href="https://t.me/srfinvest" target="_blank" class="channel-card">
+          <div class="channel-icon-wrap" style="background: rgba(35,158,217,0.15);">✈️</div>
+          <div class="channel-info">
+            <h3>Telegram Group</h3>
+            <p>Join our main signals community</p>
+          </div>
+          <div class="channel-arrow">→</div>
+        </a>
+        <a href="https://instagram.com/srfinvest" target="_blank" class="channel-card">
+          <div class="channel-icon-wrap" style="background: rgba(220,39,67,0.15);">📸</div>
+          <div class="channel-info">
+            <h3>Instagram</h3>
+            <p>Daily charts, insights & updates</p>
+          </div>
+          <div class="channel-arrow">→</div>
+        </a>
+        <a href="https://x.com/srfinvest" target="_blank" class="channel-card">
+          <div class="channel-icon-wrap" style="background: rgba(255,255,255,0.05);">🐦</div>
+          <div class="channel-info">
+            <h3>X (Twitter)</h3>
+            <p>Market commentary & quick takes</p>
+          </div>
+          <div class="channel-arrow">→</div>
+        </a>
+        <a href="https://linkedin.com/company/srfinvest" target="_blank" class="channel-card">
+          <div class="channel-icon-wrap" style="background: rgba(10,102,194,0.15);">💼</div>
+          <div class="channel-info">
+            <h3>LinkedIn</h3>
+            <p>Professional updates & insights</p>
+          </div>
+          <div class="channel-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form-card">
+      <h3>Send us a message</h3>
+      <p>We'll get back to you within 2-4 hours during market hours.</p>
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-input" placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone / WhatsApp Number</label>
+        <input type="tel" class="form-input" placeholder="+91 98765 43210">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Interested In</label>
+        <select class="form-select">
+          <option value="">Select a plan...</option>
+          <option>Basic Membership</option>
+          <option>Premium Membership</option>
+          <option>VIP Elite Membership</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Trading Experience</label>
+        <select class="form-select">
+          <option value="">Select your experience...</option>
+          <option>Complete Beginner</option>
+          <option>Less than 1 year</option>
+          <option>1–3 years</option>
+          <option>3+ years</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message (Optional)</label>
+        <textarea class="form-textarea" placeholder="Any specific questions or goals?"></textarea>
+      </div>
+      <button class="form-btn" onclick="submitContact()">Send Message →</button>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title" style="font-size: 2rem;">Common Questions</h2>
+    <div class="faq-grid" id="faqGrid">
+      <!-- generated by JS -->
+    </div>
+  </div>
+</div>
+
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-brand">
+    <h2><span>SR</span>Finvest</h2>
+    <p>India's premium trading assistance platform. We provide signals, education, market insights, and community access — empowering traders to grow systematically.</p>
+    <div class="footer-disclaimer">
+      ⚠️ SR Finvest is a trading assistance platform. We do NOT provide SEBI-registered investment advice. All content is for educational purposes only. Trading involves risk. Please trade responsibly.
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Platform</h4>
+    <ul>
+      <li><a href="#" onclick="showPage('home')">Home</a></li>
+      <li><a href="#" onclick="showPage('membership')">Membership</a></li>
+      <li><a href="#" onclick="showPage('education')">Education Hub</a></li>
+      <li><a href="#" onclick="showPage('portfolio')">Portfolio Tracker</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Company</h4>
+    <ul>
+      <li><a href="#" onclick="showPage('about')">About Us</a></li>
+      <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Use</a></li>
+      <li><a href="#">Disclaimer</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Community</h4>
+    <ul>
+      <li><a href="https://t.me/srfinvest" target="_blank">Telegram Group</a></li>
+      <li><a href="https://wa.me/your-number" target="_blank">WhatsApp Channel</a></li>
+      <li><a href="https://instagram.com/srfinvest" target="_blank">Instagram</a></li>
+      <li><a href="https://x.com/srfinvest" target="_blank">X (Twitter)</a></li>
+      <li><a href="https://linkedin.com/company/srfinvest" target="_blank">LinkedIn</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2025 SR Finvest. All rights reserved.</p>
+  <p style="font-size: 0.75rem; color: var(--text-muted);">Not SEBI Registered. For Educational Purpose Only.</p>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// ============================
+// NAV
+// ============================
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('nav-' + name);
+  if (el) el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (name === 'portfolio') initPortfolioCharts();
+}
+
+// ============================
+// HERO CANDLESTICK ANIMATION
+// ============================
+const heroCanvas = document.getElementById('heroChart');
+const hCtx = heroCanvas.getContext('2d');
+let candles = [];
+let animFrame;
+
+function resizeHero() {
+  heroCanvas.width = heroCanvas.parentElement.offsetWidth;
+  heroCanvas.height = heroCanvas.parentElement.offsetHeight;
+}
+
+function randomCandle(x, prevClose) {
+  const o = prevClose + (Math.random() - 0.48) * 18;
+  const c = o + (Math.random() - 0.45) * 22;
+  const h = Math.max(o, c) + Math.random() * 10;
+  const l = Math.min(o, c) - Math.random() * 10;
+  return { x, o, c, h, l };
+}
+
+function initHeroChart() {
+  resizeHero();
+  candles = [];
+  const W = heroCanvas.width;
+  const cols = Math.floor(W / 28) + 2;
+  let price = 350;
+  for (let i = 0; i < cols; i++) {
+    const c = randomCandle(i * 28 - 28, price);
+    candles.push(c);
+    price = c.c;
+  }
+}
+
+function drawHeroChart() {
+  const W = heroCanvas.width, H = heroCanvas.height;
+  hCtx.clearRect(0, 0, W, H);
+
+  const prices = candles.flatMap(c => [c.h, c.l]);
+  const minP = Math.min(...prices), maxP = Math.max(...prices);
+  const range = maxP - minP || 1;
+  const pad = 60;
+
+  function py(p) { return pad + (1 - (p - minP) / range) * (H - 2 * pad); }
+
+  // Draw line under close prices
+  hCtx.beginPath();
+  candles.forEach((c, i) => { i === 0 ? hCtx.moveTo(c.x + 10, py(c.c)) : hCtx.lineTo(c.x + 10, py(c.c)); });
+  hCtx.strokeStyle = 'rgba(0,217,126,0.2)';
+  hCtx.lineWidth = 1.5;
+  hCtx.stroke();
+
+  // Draw candles
+  candles.forEach(c => {
+    const bull = c.c >= c.o;
+    const col = bull ? '#00d97e' : '#ff5555';
+    hCtx.strokeStyle = col;
+    hCtx.fillStyle = bull ? 'rgba(0,217,126,0.3)' : 'rgba(255,85,85,0.3)';
+    hCtx.lineWidth = 1;
+
+    // Wick
+    hCtx.beginPath();
+    hCtx.moveTo(c.x + 10, py(c.h));
+    hCtx.lineTo(c.x + 10, py(c.l));
+    hCtx.stroke();
+
+    // Body
+    const bodyY = Math.min(py(c.o), py(c.c));
+    const bodyH = Math.max(Math.abs(py(c.o) - py(c.c)), 2);
+    hCtx.fillRect(c.x + 2, bodyY, 16, bodyH);
+    hCtx.strokeRect(c.x + 2, bodyY, 16, bodyH);
+  });
+}
+
+function animateHero() {
+  // Scroll candles left
+  candles.forEach(c => c.x -= 0.4);
+  // Add new candle when needed
+  const last = candles[candles.length - 1];
+  if (last.x < heroCanvas.width) {
+    candles.push(randomCandle(last.x + 28, last.c));
+  }
+  // Remove off-screen
+  candles = candles.filter(c => c.x + 28 > -10);
+  drawHeroChart();
+  animFrame = requestAnimationFrame(animateHero);
+}
+
+window.addEventListener('resize', () => {
+  resizeHero();
+  initHeroChart();
+});
+initHeroChart();
+animateHero();
+
+// ============================
+// TICKER
+// ============================
+const tickerData = [
+  { sym: 'NIFTY 50', val: '24,320.80', chg: '+0.48%', up: true },
+  { sym: 'SENSEX', val: '80,165.50', chg: '+0.41%', up: true },
+  { sym: 'RELIANCE', val: '₹2,860.40', chg: '+1.24%', up: true },
+  { sym: 'TCS', val: '₹4,210.00', chg: '+0.87%', up: true },
+  { sym: 'HDFC BANK', val: '₹1,780.30', chg: '-0.22%', up: false },
+  { sym: 'INFOSYS', val: '₹1,640.20', chg: '-0.55%', up: false },
+  { sym: 'WIPRO', val: '₹546.80', chg: '+1.02%', up: true },
+  { sym: 'BHARTIARTL', val: '₹1,725.60', chg: '+2.13%', up: true },
+  { sym: 'GOLD', val: '₹73,450', chg: '+0.35%', up: true },
+  { sym: 'SILVER', val: '₹91,200', chg: '-0.18%', up: false },
+  { sym: 'BANKNIFTY', val: '51,240.50', chg: '-0.32%', up: false },
+  { sym: 'MARUTI', val: '₹12,340', chg: '+0.75%', up: true },
+];
+
+const track = document.getElementById('ticker');
+const makeItems = () => tickerData.map(t => `
+  <div class="ticker-item">
+    <span class="ticker-sym">${t.sym}</span>
+    <span class="ticker-val">${t.val}</span>
+    <span class="ticker-chg ${t.up ? 'up' : 'dn'}">${t.chg}</span>
+  </div>
+`).join('');
+track.innerHTML = makeItems() + makeItems();
+
+// ============================
+// COUNTER ANIMATION
+// ============================
+const counters = document.querySelectorAll('.counter');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.dataset.target);
+      let start = 0;
+      const duration = 1500;
+      const step = target / (duration / 16);
+      const timer = setInterval(() => {
+        start = Math.min(start + step, target);
+        el.textContent = Math.floor(start).toLocaleString('en-IN');
+        if (start >= target) clearInterval(timer);
+      }, 16);
+      observer.unobserve(el);
+    }
+  });
+}, { threshold: 0.3 });
+counters.forEach(c => observer.observe(c));
+
+// ============================
+// SCROLL REVEAL
+// ============================
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ============================
+// GROWTH CHART
+// ============================
+const gCtx = document.getElementById('growthChart').getContext('2d');
+new Chart(gCtx, {
+  type: 'line',
+  data: {
+    labels: ['Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May'],
+    datasets: [{
+      label: 'Portfolio Growth',
+      data: [100, 108, 115, 122, 119, 131, 140, 152, 148, 168, 180, 195],
+      borderColor: '#00d97e', backgroundColor: 'rgba(0,217,126,0.08)',
+      borderWidth: 2.5, fill: true, tension: 0.4, pointRadius: 4,
+      pointBackgroundColor: '#00d97e', pointBorderColor: '#080a0c', pointBorderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#4a5568', font: { size: 11 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#4a5568', font: { size: 11 }, callback: v => v + '%' } }
+    }
+  }
+});
+
+// ============================
+// EDUCATION CARDS
+// ============================
+const eduContent = [
+  { cat: 'beginner', icon: '🔰', title: 'Introduction to Stock Markets', desc: 'Learn how exchanges work, what are shares, and how to start your market journey from scratch.', level: 'beginner', time: '12 min read', locked: false },
+  { cat: 'candlestick', icon: '🕯️', title: 'Japanese Candlestick Patterns', desc: 'Master Doji, Hammer, Engulfing, and 20+ patterns that predict market direction with high accuracy.', level: 'intermediate', time: '25 min read', locked: false },
+  { cat: 'technical', icon: '📈', title: 'Support & Resistance Levels', desc: 'Identify key price levels where markets tend to reverse or break out. The foundation of technical analysis.', level: 'intermediate', time: '18 min read', locked: false },
+  { cat: 'risk', icon: '🛡️', title: 'Position Sizing & Risk Management', desc: 'Never risk more than you can afford to lose. Learn how to size positions and set stop-losses properly.', level: 'beginner', time: '15 min read', locked: false },
+  { cat: 'psychology', icon: '🧠', title: 'Trading Psychology Masterclass', desc: 'Fear, greed, FOMO — the biggest killer of trading accounts. Learn to trade like a machine, not a human.', level: 'intermediate', time: '30 min read', locked: true },
+  { cat: 'swing', icon: '🌊', title: 'Swing Trading Strategy Guide', desc: 'Capture 5-15% moves in stocks over days to weeks using simple trend-following and breakout strategies.', level: 'intermediate', time: '40 min read', locked: true },
+  { cat: 'technical', icon: '📊', title: 'RSI, MACD & Moving Averages', desc: 'The three most powerful indicators used by professional traders worldwide — explained simply.', level: 'beginner', time: '20 min read', locked: false },
+  { cat: 'intraday', icon: '⚡', title: 'Intraday Trading Fundamentals', desc: 'Learn the rules, timings, setups and psychology required to successfully trade within a single session.', level: 'advanced', time: '35 min read', locked: true },
+  { cat: 'technical', icon: '🔢', title: 'Fibonacci Retracement Mastery', desc: 'Golden ratios that markets respect. Learn to identify entry zones using Fib levels like a pro.', level: 'advanced', time: '22 min read', locked: true },
+  { cat: 'psychology', icon: '📓', title: 'Trading Journal & Discipline', desc: 'Why every serious trader keeps a journal and how 30 minutes a day of review changes your results.', level: 'beginner', time: '10 min read', locked: false },
+  { cat: 'swing', icon: '🏹', title: 'Breakout Trading Strategies', desc: 'Learn to identify and trade powerful breakouts from consolidation patterns before the big move.', level: 'intermediate', time: '28 min read', locked: true },
+  { cat: 'candlestick', icon: '📉', title: 'Bearish Reversal Patterns', desc: 'Evening Star, Shooting Star, Hanging Man — learn to identify when bulls are exhausted and reversals begin.', level: 'advanced', time: '20 min read', locked: true },
+];
+
+let currentCat = 'all';
+function renderEdu() {
+  const search = document.getElementById('eduSearch').value.toLowerCase();
+  const filtered = eduContent.filter(c =>
+    (currentCat === 'all' || c.cat === currentCat) &&
+    (!search || c.title.toLowerCase().includes(search) || c.desc.toLowerCase().includes(search))
+  );
+  const grid = document.getElementById('eduGrid');
+  const bg = ['#0d1a12','#1a0d12','#0d121a','#1a1a0d','#0d1a1a','#1a0d1a'];
+  grid.innerHTML = filtered.map((c, i) => `
+    <div class="edu-card ${c.locked ? 'edu-locked-card' : ''}">
+      <div class="edu-card-thumb" style="background: ${bg[i % 6]};">${c.icon}</div>
+      <div class="edu-card-body">
+        <div class="edu-card-category">${c.cat.replace('candlestick','Candlestick').replace('technical','Technical Analysis').replace('beginner','Beginner').replace('risk','Risk Management').replace('psychology','Psychology').replace('swing','Swing Trading').replace('intraday','Intraday')}</div>
+        <h3>${c.title}</h3>
+        <p>${c.desc}</p>
+        <div class="edu-card-meta">
+          <span class="edu-level ${c.level}">${c.level}</span>
+          <span class="edu-time">📖 ${c.time}</span>
+        </div>
+      </div>
+      ${c.locked ? `<div class="edu-lock-overlay"><span>🔒</span><span>Premium Members Only</span></div>` : ''}
+    </div>
+  `).join('');
+}
+function filterCat(cat, el) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  renderEdu();
+}
+function filterEdu() { renderEdu(); }
+renderEdu();
+
+// ============================
+// PORTFOLIO TRACKER
+// ============================
+let holdings = [
+  { sym: 'RELIANCE', qty: 10, avg: 2750, cmp: 2860 },
+  { sym: 'TCS', qty: 5, avg: 4100, cmp: 4210 },
+  { sym: 'HDFC BANK', qty: 20, avg: 1800, cmp: 1780 },
+];
+
+let portCharts = {};
+
+function addHolding() {
+  const sym = document.getElementById('holdSym').value.trim().toUpperCase();
+  const qty = parseFloat(document.getElementById('holdQty').value);
+  const avg = parseFloat(document.getElementById('holdAvg').value);
+  const cmp = parseFloat(document.getElementById('holdCmp').value);
+  if (!sym || !qty || !avg || !cmp) { alert('Please fill all fields'); return; }
+  holdings.push({ sym, qty, avg, cmp });
+  document.getElementById('holdSym').value = '';
+  document.getElementById('holdQty').value = '';
+  document.getElementById('holdAvg').value = '';
+  document.getElementById('holdCmp').value = '';
+  updatePortfolio();
+}
+
+function updatePortfolio() {
+  let totalInvested = 0, totalCurrent = 0;
+  holdings.forEach(h => { totalInvested += h.qty * h.avg; totalCurrent += h.qty * h.cmp; });
+  const pnl = totalCurrent - totalInvested;
+  const pnlPct = totalInvested ? (pnl / totalInvested * 100) : 0;
+  document.getElementById('portTotal').textContent = '₹' + totalCurrent.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+  document.getElementById('portChange').textContent = (pnl >= 0 ? '+' : '') + '₹' + pnl.toFixed(0) + ' (' + pnlPct.toFixed(2) + '%)';
+  document.getElementById('portChange').style.color = pnl >= 0 ? 'var(--emerald)' : '#ff5555';
+  document.getElementById('portInvested').textContent = '₹' + totalInvested.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+  document.getElementById('portPnl').textContent = (pnl >= 0 ? '+' : '') + '₹' + Math.abs(pnl).toFixed(0);
+  document.getElementById('portPnl').style.color = pnl >= 0 ? 'var(--emerald)' : '#ff5555';
+  document.getElementById('portCount').textContent = holdings.length;
+  // List
+  document.getElementById('holdingsList').innerHTML = holdings.map(h => {
+    const p = (h.cmp - h.avg) * h.qty;
+    return `<div class="holding-row">
+      <span class="holding-sym">${h.sym}</span>
+      <span class="holding-pnl ${p >= 0 ? 'pos' : 'neg'}">${p >= 0 ? '+' : ''}₹${Math.abs(p).toFixed(0)}</span>
+    </div>`;
+  }).join('');
+  updateAllocChart();
+}
+
+function initPortfolioCharts() {
+  if (portCharts.pnl) return;
+  const pnlCtx = document.getElementById('pnlChart').getContext('2d');
+  portCharts.pnl = new Chart(pnlCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+      datasets: [{ label: 'P&L', data: [2200,-500,3400,1800,4200,-200,5100,2900,3800,6200,-800,7400], backgroundColor: ctx => ctx.raw >= 0 ? 'rgba(0,217,126,0.6)' : 'rgba(255,85,85,0.6)', borderRadius: 4 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#4a5568', font: { size: 10 } } },
+        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#4a5568', font: { size: 10 }, callback: v => '₹' + (v/1000).toFixed(0) + 'K' } }
+      }
+    }
+  });
+  const aCtx = document.getElementById('allocChart').getContext('2d');
+  portCharts.alloc = new Chart(aCtx, {
+    type: 'doughnut',
+    data: {
+      labels: holdings.map(h => h.sym),
+      datasets: [{ data: holdings.map(h => h.qty * h.cmp), backgroundColor: ['#00d97e','#7c5cfc','#f0c040','#ff5555','#229ed9'], borderWidth: 0, hoverOffset: 6 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '70%',
+      plugins: { legend: { position: 'bottom', labels: { color: '#8899aa', font: { size: 11 }, padding: 12 } } }
+    }
+  });
+  updatePortfolio();
+}
+
+function updateAllocChart() {
+  if (!portCharts.alloc) return;
+  portCharts.alloc.data.labels = holdings.map(h => h.sym);
+  portCharts.alloc.data.datasets[0].data = holdings.map(h => h.qty * h.cmp);
+  portCharts.alloc.update();
+}
+
+// Delay init to avoid canvas issues
+setTimeout(updatePortfolio, 100);
+
+// ============================
+// FAQ
+// ============================
+const faqs = [
+  { q: 'Is SR Finvest a SEBI registered advisor?', a: 'No. SR Finvest is a trading assistance and education platform. We do not provide SEBI-registered investment advisory services. All content is for educational purposes only.' },
+  { q: 'How do I join and make payment?', a: 'We onboard all members manually through WhatsApp or Telegram. There is no online payment on this website. Simply reach out to us and we will guide you through the process.' },
+  { q: 'What kind of signals do you provide?', a: 'We provide equity delivery signals, F&O signals, and intraday calls (for Premium and VIP members). Each signal comes with clear entry, target, and stop-loss levels.' },
+  { q: 'How accurate are your signals?', a: 'Our overall signal accuracy for the last 6 months has been 87%. We publish full monthly performance reports transparently, including losses. We do not cherry-pick results.' },
+  { q: 'Can beginners join SR Finvest?', a: 'Absolutely. We have a structured education hub and a Basic membership tier designed specifically for beginners. Our community is welcoming and educational.' },
+  { q: 'What markets do you cover?', a: 'We primarily cover Indian equity markets (NSE/BSE), F&O (Futures & Options), and selected commodity segments like Gold and Silver.' },
+  { q: 'Do I need a Demat account to join?', a: 'To actually trade based on our signals, yes. But you can join our educational community and start learning without an active trading account.' },
+  { q: 'What is the refund policy?', a: 'Please contact us on WhatsApp for our current refund policy. Since onboarding is manual, we handle each case individually and fairly.' },
+];
+
+document.getElementById('faqGrid').innerHTML = faqs.map((f, i) => `
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(${i})">
+      <span>${f.q}</span>
+      <span class="toggle">+</span>
+    </div>
+    <div class="faq-a" id="faq-${i}">${f.a}</div>
+  </div>
+`).join('');
+
+function toggleFaq(i) {
+  const q = document.querySelectorAll('.faq-q')[i];
+  const a = document.getElementById('faq-' + i);
+  q.classList.toggle('open');
+  a.classList.toggle('open');
+}
+
+// ============================
+// CONTACT FORM
+// ============================
+function submitContact() {
+  alert('Thank you! We will reach out to you on WhatsApp within 2-4 hours. 🚀');
+}
+</script>
+</body>
+</html>
